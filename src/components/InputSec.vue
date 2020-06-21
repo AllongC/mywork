@@ -1,6 +1,6 @@
 <template>
   <div class="InputSec">
-    <input :type="type" :placeholder="InputText" v-model="EditVal" />
+    <input :type="type" :placeholder="InputText" v-model="EditVal" :class="{errors:!flag}" />
   </div>
 </template>
 
@@ -35,6 +35,9 @@ export default {
     border: none;
     border-bottom: 1px solid black;
     font-size: 5vw;
+  }
+  .errors {
+    border-bottom-color: #d81e06;
   }
 }
 </style>
