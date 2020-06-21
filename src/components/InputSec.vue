@@ -1,6 +1,12 @@
 <template>
   <div class="InputSec">
-    <input :type="type" :placeholder="InputText" v-model="EditVal" :class="{errors:!flag}" />
+    <input
+      :type="type"
+      :placeholder="InputText"
+      v-model="EditVal"
+      :class="{errors:!flag}"
+      @blur="leaved"
+    />
   </div>
 </template>
 
@@ -17,6 +23,10 @@ export default {
     EditVal(newVal) {
       const reg = new RegExp(this.rule).test(newVal);
       this.flag = reg;
+    }
+  },
+  methods: {
+    leaved() {
       if (!this.flag) {
         console.log(this.errMsg);
       }
