@@ -7,7 +7,23 @@
 </template>
 
 <script>
-export default {};
+export default {
+  mounted() {
+    this.$axios({
+      url: "http://localhost:3000/post",
+      method: "get",
+      params: {
+        category: 8
+      }
+    })
+      .then(data => {
+        console.log(data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
+};
 </script>
 
 <style lang="less" scoped>
