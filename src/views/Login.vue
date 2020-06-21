@@ -1,11 +1,6 @@
 <template>
   <div>
-    <div class="closeSec">
-      <span class="iconfont iconicon-test"></span>
-    </div>
-    <div class="logoSec">
-      <span class="iconfont iconnew"></span>
-    </div>
+    <CommonSec />
     <InputSec
       type="text"
       InputText="用户名/手机号码"
@@ -27,6 +22,7 @@
 <script>
 import InputSec from "@/components/InputSec";
 import LoginSec from "@/components/LoginSec";
+import CommonSec from "@/components/CommonSec";
 export default {
   data() {
     return {
@@ -47,23 +43,11 @@ export default {
   },
   components: {
     InputSec,
-    LoginSec
+    LoginSec,
+    CommonSec
   }
 };
 </script>
 
 <style lang="less" scoped>
-.closeSec {
-  padding: 8.333vw 0vw 0vw 8.333vw;
-  .iconicon-test {
-    font-size: 6.389vw;
-  }
-}
-.logoSec {
-  text-align: center;
-  .iconnew {
-    color: #d81e06;
-    font-size: 35vw;
-  }
-}
 </style>
