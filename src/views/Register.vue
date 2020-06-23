@@ -9,7 +9,13 @@
       @change="setUsername"
     />
     <InputSec type="text" InputText="昵称" rule="^\w{3,6}$" errMsg="昵称格式不正确" @change="setNickname" />
-    <InputSec type="password" InputText="密码" rule="^\d{3,6}$" errMsg="密码不正确" @change="setPassword" />
+    <InputSec
+      type="password"
+      InputText="密码"
+      rule="^\d{3,6}$"
+      errMsg="密码格式不正确"
+      @change="setPassword"
+    />
     <LoginSec btnInfo="注册" @inform="accept" />
   </div>
 </template>
@@ -23,24 +29,59 @@ export default {
     return {
       username: "",
       nickname: "",
-      password: ""
+      password: "",
+      flagUser: true,
+      flagNick: true,
+      flagPassword: true
     };
   },
   methods: {
     accept() {
-      console.log("父级触发...");
-      console.log(this.username);
-      console.log(this.nickname);
-      console.log(this.password);
+      if (this.username == "" || this.nickname == "" || this.password == "") {
+        this.$toast.fail("输入不能为空！");
+        return;
+      }
+      if (!this.flagUser) {
+        this.$toast.fail("手机号码或用户名格式不正确");
+        return;
+      }
+      if (!this.flagPassword) {
+        this.$toast.fail("密码格式不正确");
+        return;
+      }
+      if (!this.flagNick) {
+        this.$toast.fail("昵称格式不正确");
+        return;
+      }
+      this.$axios({
+        url: "http://127.0.0.1:3000/register",
+        method: "post",
+        data: {
+          username: this.username,
+          password: this.password,
+          nickname: this.nickname
+        }
+      }).then(res => {
+        const { message } = res.data;
+        console.log(res.data);
+        if (message === "注册成功") {
+          this.$toast.success(message);
+        } else {
+          this.$toast.fail(message);
+        }
+      });
     },
-    setUsername(newVal) {
+    setUsername(newVal, flag) {
       this.username = newVal;
+      this.flagUser = flag;
     },
-    setNickname(newVal) {
+    setNickname(newVal, flag) {
       this.nickname = newVal;
+      this.flagNick = flag;
     },
-    setPassword(newVal) {
+    setPassword(newVal, flag) {
       this.password = newVal;
+      this.flagPassword = flag;
     }
   },
   components: {
