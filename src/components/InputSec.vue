@@ -27,11 +27,11 @@ export default {
   },
   methods: {
     leaved() {
+      this.$emit("change", this.EditVal);
       if (!this.flag) {
         this.$toast.fail(this.errMsg);
         return;
       }
-      this.$emit("change", this.EditVal);
     }
   }
 };

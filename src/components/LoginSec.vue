@@ -9,7 +9,6 @@ export default {
   props: ["btnInfo"],
   methods: {
     trigger() {
-      console.log("子级触发...");
       this.$emit("inform");
     }
   }
