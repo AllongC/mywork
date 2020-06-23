@@ -58,7 +58,7 @@ export default {
       }).then(res => {
         const { message, data } = res.data;
         console.log(data);
-        if (message === "登陆成功") {
+        if (message === "登录成功") {
           localStorage.setItem("token", data.token);
           localStorage.setItem("userId", data.user.id);
           this.$toast.success(message);

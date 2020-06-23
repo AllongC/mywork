@@ -1,14 +1,17 @@
 <template>
   <div>
-    <div class="userSec">
+    <div class="userSec" v-if="dataObj">
       <div class="imgSec">
-        <img src="@/img/logo.jpg" alt />
+        <img :src="'http://127.0.0.1:3000'+dataObj.head_img" v-if="dataObj.head_img" alt />
+        <img src="@/img/logo.jpg" v-else alt />
       </div>
       <div class="infoSec">
         <p class="userName">
-          <span class="iconfont iconxingbienan"></span> 火星网友
+          <span class="iconfont iconxingbienan" v-if="dataObj.gender===1"></span>
+          <span class="iconfont iconxingbienv" v-else></span>
+          {{dataObj.nickname}}
         </p>
-        <p class="userData">2019-10-10</p>
+        <p class="userData">{{dataObj.create_date.split("T")[0]}}</p>
       </div>
       <div class="arrowsSec">
         <span class="iconfont iconjiantou1"></span>
@@ -24,8 +27,28 @@
 <script>
 import ListSec from "@/components/ListSec";
 export default {
+  data() {
+    return {
+      dataObj: null
+    };
+  },
   components: {
     ListSec
+  },
+  mounted() {
+    this.$axios({
+      url: "http://127.0.0.1:3000/user/" + localStorage.getItem("userId"),
+      method: "get",
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("token")
+      }
+    }).then(res => {
+      const { message, data } = res.data;
+      if (message == "获取成功") {
+        this.dataObj = data;
+        console.log(this.dataObj);
+      }
+    });
   },
   methods: {
     ToMyFocus(Val) {
