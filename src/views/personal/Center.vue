@@ -14,10 +14,10 @@
         <span class="iconfont iconjiantou1"></span>
       </div>
     </div>
-    <ListSec MyFocus="我的关注" FocusUser="关注的用户" />
-    <ListSec MyFocus="我的跟帖" FocusUser="跟帖/回复" />
-    <ListSec MyFocus="我的收藏" FocusUser="文章/视频" />
-    <ListSec MyFocus="设置" FocusUser />
+    <ListSec MyFocus="我的关注" FocusUser="关注的用户" @tigger="ToMyFocus('fouces')" />
+    <ListSec MyFocus="我的跟帖" FocusUser="跟帖/回复" @tigger="ToMyFocus('follow')" />
+    <ListSec MyFocus="我的收藏" FocusUser="文章/视频" @tigger="ToMyFocus('collect')" />
+    <ListSec MyFocus="设置" FocusUser @tigger="ToMyFocus('set')" />
   </div>
 </template>
 
@@ -26,6 +26,11 @@ import ListSec from "@/components/ListSec";
 export default {
   components: {
     ListSec
+  },
+  methods: {
+    ToMyFocus(Val) {
+      console.log(Val);
+    }
   }
 };
 </script>

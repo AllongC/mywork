@@ -1,5 +1,5 @@
 <template>
-  <div class="ListSec">
+  <div class="ListSec" @click="SkipTO">
     <p class="MyFocus">{{MyFocus}}</p>
     <p class="FocusUser">{{FocusUser}}</p>
     <p class="Skip">
@@ -10,7 +10,13 @@
 
 <script>
 export default {
-  props: ["MyFocus", "FocusUser"]
+  props: ["MyFocus", "FocusUser"],
+  methods: {
+    SkipTO() {
+      console.log("子组件触发...");
+      this.$emit("tigger");
+    }
+  }
 };
 </script>
 
@@ -21,8 +27,6 @@ export default {
   align-items: center;
   border-bottom: 1px solid #e4e4e4;
   margin-left: 4.167vw;
-  .MyFocus {
-  }
   .FocusUser {
     flex: 1;
     text-align: right;
