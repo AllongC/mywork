@@ -2,7 +2,7 @@
   <div>
     <div class="userSec" v-if="dataObj">
       <div class="imgSec">
-        <img :src=" axios.baseURL +dataObj.head_img" v-if="dataObj.head_img" alt />
+        <img :src=" $axios.defaults.baseURL +dataObj.head_img" v-if="dataObj.head_img" alt />
         <img src="@/img/logo.jpg" v-else alt />
       </div>
       <div class="infoSec">
@@ -47,13 +47,6 @@ export default {
       const { message, data, statusCode } = res.data;
       if (message == "获取成功") {
         this.dataObj = data;
-        console.log(this.dataObj);
-      } else if (statusCode == 401) {
-        localStorage.removeItem("token");
-        localStorage.removeItem("userId");
-        this.$router.replace("/login");
-      } else {
-        this.$toast.fail(message);
       }
     });
   },
