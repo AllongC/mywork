@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="userSec" v-if="dataObj">
+    <div class="userSec" v-if="dataObj" @click="editUser">
       <div class="imgSec">
         <img :src=" $axios.defaults.baseURL +dataObj.head_img" v-if="dataObj.head_img" alt />
         <img src="@/img/logo.jpg" v-else alt />
@@ -57,6 +57,9 @@ export default {
         localStorage.removeItem("userId");
         this.$router.replace("/login");
       }
+    },
+    editUser() {
+      this.$router.push("/edit");
     }
   }
 };

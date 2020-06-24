@@ -3,6 +3,7 @@
     <router-link to="/login">登录</router-link>
     <router-link to="/register">注册</router-link>
     <router-link to="/center">个人中心</router-link>
+    <router-link to="/edit">用户编辑</router-link>
     <router-view></router-view>
   </div>
 </template>

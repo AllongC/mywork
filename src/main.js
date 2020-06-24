@@ -7,6 +7,7 @@ import 'vant/lib/index.css'
 import { Toast } from 'vant'
 axios.defaults.baseURL = 'http://127.0.0.1:3000'
 axios.interceptors.response.use(res => {
+  console.log(res);
   const { statusCode, message } = res.data
   if (statusCode == 401 && message == '用户信息验证失败') {
     Toast.fail(message)
@@ -20,7 +21,9 @@ Vue.prototype.$axios = axios
 Vue.use(Vant)
 Vue.config.productionTip = false
 router.beforeEach((to, from, next) => {
-  if (to.name == 'Center') {
+  // const nameArr = ['Center', 'Edit']
+  // console.log(nameArr.indexOf(to.name));
+  if (to.meta.auth) {
     if (localStorage.getItem('token') && localStorage.getItem("userId")) {
       return next()
     } else {
