@@ -44,10 +44,16 @@ export default {
         Authorization: "Bearer " + localStorage.getItem("token")
       }
     }).then(res => {
-      const { message, data } = res.data;
+      const { message, data, statusCode } = res.data;
       if (message == "获取成功") {
         this.dataObj = data;
         console.log(this.dataObj);
+      } else if (statusCode == 401) {
+        localStorage.removeItem("token");
+        localStorage.removeItem("userId");
+        this.$router.replace("/login");
+      } else {
+        this.$toast.fail(message);
       }
     });
   },
