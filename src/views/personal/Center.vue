@@ -21,6 +21,7 @@
     <ListSec MyFocus="我的跟帖" FocusUser="跟帖/回复" @tigger="ToMyFocus('follow')" />
     <ListSec MyFocus="我的收藏" FocusUser="文章/视频" @tigger="ToMyFocus('collect')" />
     <ListSec MyFocus="设置" FocusUser @tigger="ToMyFocus('set')" />
+    <ListSec MyFocus="退出" FocusUser @tigger="ToMyFocus('quit')" />
   </div>
 </template>
 
@@ -52,7 +53,11 @@ export default {
   },
   methods: {
     ToMyFocus(Val) {
-      console.log(Val);
+      if (Val === "quit") {
+        localStorage.removeItem("token");
+        localStorage.removeItem("userId");
+        this.$router.replace("/login");
+      }
     }
   }
 };
