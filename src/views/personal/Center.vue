@@ -88,6 +88,10 @@ export default {
       color: #81b8dd;
       font-size: 5vw;
     }
+    .iconxingbienv {
+      color: #f04bc0;
+      font-size: 5vw;
+    }
     .userData {
       margin-top: 2.778vw;
       color: #b3b3b3;

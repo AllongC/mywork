@@ -16,6 +16,12 @@ axios.interceptors.response.use(res => {
   }
   return res
 })
+axios.interceptors.request.use(config => {
+  if (localStorage.getItem('token') && !config.headers.Authorization) {
+    config.headers.Authorization = "Bearer " + localStorage.getItem('token')
+  }
+  return config
+})
 Vue.prototype.$axios = axios
 Vue.use(Vant)
 Vue.config.productionTip = false

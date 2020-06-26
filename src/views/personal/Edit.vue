@@ -56,10 +56,7 @@ export default {
     upData() {
       this.$axios({
         url: "/user/" + localStorage.getItem("userId"),
-        method: "get",
-        headers: {
-          Authorization: "Bearer " + localStorage.getItem("token")
-        }
+        method: "get"
       }).then(res => {
         const { message, data } = res.data;
         if (message == "获取成功") {
@@ -72,10 +69,7 @@ export default {
       this.$axios({
         url: "/user_update/" + localStorage.getItem("userId"),
         method: "post",
-        data: data,
-        headers: {
-          Authorization: "Bearer " + localStorage.getItem("token")
-        }
+        data: data
       }).then(res => {
         this.upData();
       });
@@ -102,10 +96,7 @@ export default {
       this.$axios({
         url: "/upload",
         data: data,
-        method: "post",
-        headers: {
-          Authorization: "Bearer " + localStorage.getItem("token")
-        }
+        method: "post"
       }).then(res => {
         const { message, data } = res.data;
         if (message == "文件上传成功") {
