@@ -2,8 +2,9 @@
   <div v-if="dataObj">
     <CommonTop topVal="编辑资料" />
     <div class="imgSec">
-      <img v-if="dataObj.head_img" :src=" axios.defaults.baseURL+dataObj.head_img" alt />
+      <img v-if="dataObj.head_img" :src=" $axios.defaults.baseURL+dataObj.head_img" alt />
       <img v-else src="@/img/logo.jpg" alt />
+      <van-uploader :after-read="afterRead" />
     </div>
     <ListSec MyFocus="昵称" :FocusUser="dataObj.nickname" @tigger="nicknameShow=true" />
     <ListSec MyFocus="密码" FocusUser="******" @tigger="pwdShow=true" />
@@ -64,7 +65,6 @@ export default {
         if (message == "获取成功") {
           this.dataObj = data;
           this.confPwd = this.dataObj.password;
-          console.log(res.data);
         }
       });
     },
@@ -95,6 +95,23 @@ export default {
     },
     editGender(item) {
       this.editEvery({ gender: item.gender });
+    },
+    afterRead(fileObj) {
+      const data = new FormData();
+      data.append("file", fileObj.file);
+      this.$axios({
+        url: "/upload",
+        data: data,
+        method: "post",
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token")
+        }
+      }).then(res => {
+        const { message, data } = res.data;
+        if (message == "文件上传成功") {
+          this.editEvery({ head_img: data.url });
+        }
+      });
     }
   },
   mounted() {
@@ -109,14 +126,19 @@ export default {
 
 <style lang="less" scoped>
 .imgSec {
+  position: relative;
   display: flex;
   height: 140px;
   justify-content: center;
   align-items: center;
   img {
+    position: absolute;
     width: 70px;
     height: 70px;
     border-radius: 50%;
+  }
+  .van-uploader {
+    opacity: 0;
   }
 }
 </style>
