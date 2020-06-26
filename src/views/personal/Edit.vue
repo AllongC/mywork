@@ -5,9 +5,16 @@
       <img v-if="dataObj.head_img" :src=" axios.defaults.baseURL+dataObj.head_img" alt />
       <img v-else src="@/img/logo.jpg" alt />
     </div>
-    <ListSec MyFocus="昵称" :FocusUser="dataObj.nickname" />
-    <ListSec MyFocus="密码" FocusUser="******" />
+    <ListSec MyFocus="昵称" :FocusUser="dataObj.nickname" @tigger="nicknameShow=true" />
+    <ListSec MyFocus="密码" FocusUser="******" @tigger="pwdShow=true" />
     <ListSec MyFocus="性别" :FocusUser="dataObj.gender==1?'男':'女'" />
+    <van-dialog v-model="nicknameShow" title="昵称修改" show-cancel-button @confirm="editNickname">
+      <van-field v-model="nicknameVal" label="昵称" placeholder="请输入新的昵称" />
+    </van-dialog>
+    <van-dialog v-model="pwdShow" title="密码修改" show-cancel-button @confirm="editPwd">
+      <van-field v-model="oldPwdVal" label="旧密码" placeholder="请输入旧的密码" />
+      <van-field v-model="newPwdVal" label="新密码" placeholder="请输入新的密码" />
+    </van-dialog>
   </div>
 </template>
 
@@ -17,22 +24,60 @@ import CommonTop from "@/components/CommonTop";
 export default {
   data() {
     return {
-      dataObj: null
+      dataObj: null,
+      confPwd: "",
+      nicknameShow: false,
+      nicknameVal: "",
+      pwdShow: false,
+      newPwdVal: "",
+      oldPwdVal: ""
     };
   },
+  methods: {
+    upData() {
+      this.$axios({
+        url: "/user/" + localStorage.getItem("userId"),
+        method: "get",
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token")
+        }
+      }).then(res => {
+        const { message, data } = res.data;
+        if (message == "获取成功") {
+          this.dataObj = data;
+          this.confPwd = this.dataObj.password;
+          console.log(res.data);
+        }
+      });
+    },
+    editEvery(data) {
+      this.$axios({
+        url: "/user_update/" + localStorage.getItem("userId"),
+        method: "post",
+        data: data,
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token")
+        }
+      }).then(res => {
+        this.upData();
+      });
+    },
+    editNickname() {
+      this.editEvery({ nickname: this.nicknameVal });
+      this.nicknameVal = "";
+    },
+    editPwd() {
+      if (this.oldPwdVal !== this.confPwd) {
+        this.$toast.fail("输入的密码与之前的密码错误错误");
+        return;
+      }
+      this.editEvery({ password: this.newPwdVal });
+      this.newPwdVal = "";
+      this.oldPwdVal = "";
+    }
+  },
   mounted() {
-    this.$axios({
-      url: "/user/" + localStorage.getItem("userId"),
-      method: "get",
-      headers: {
-        Authorization: "Bearer " + localStorage.getItem("token")
-      }
-    }).then(res => {
-      const { message, data } = res.data;
-      if (message == "获取成功") {
-        this.dataObj = data;
-      }
-    });
+    this.upData();
   },
   components: {
     ListSec,
