@@ -6,6 +6,7 @@ import Register from '@/views/Register'
 import Center from '@/views/personal/Center'
 import Edit from '@/views/personal/Edit'
 import Focus from '@/views/personal/Focus'
+import Text from '@/views/personal/Text'
 
 Vue.use(VueRouter)
 
@@ -48,6 +49,11 @@ const routes = [
     meta: {
       auth: true
     }
+  },
+  {
+    path: '/text',
+    name: 'Text',
+    component: Text,
   }
 ]
 
