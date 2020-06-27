@@ -1,15 +1,16 @@
 <template>
   <div>
-    <router-link to="/login">登录</router-link>
-    <router-link to="/register">注册</router-link>
-    <router-link to="/center">个人中心</router-link>
-    <router-link to="/edit">用户编辑</router-link>
-    <router-view></router-view>
+    <HomeTop />
   </div>
 </template>
 
 <script>
-export default {};
+import HomeTop from "@/components/HomeTop";
+export default {
+  components: {
+    HomeTop
+  }
+};
 </script>
 
 <style lang="less" scoped>
