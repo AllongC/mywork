@@ -73,36 +73,36 @@ export default {
 
 <style lang="less" scoped>
 .item {
-  height: 100px;
+  height: 27.778vw;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0px 20px;
-  border-bottom: 1px solid #e4e4e4;
+  padding: 0vw 5.556vw;
+  border-bottom: 0.278vw solid #e4e4e4;
   img {
-    width: 40px;
-    height: 40px;
+    width: 11.111vw;
+    height: 11.111vw;
     border-radius: 50%;
-    margin-right: 20px;
+    margin-right: 5.556vw;
   }
   .foucsInfo {
     flex: 1;
     p {
-      font-size: 16px;
+      font-size: 4.444vw;
       color: #333;
     }
     .focusData {
-      font-size: 14px;
+      font-size: 3.889vw;
       color: #888;
-      margin-top: 5px;
+      margin-top: 1.389vw;
     }
   }
   button {
-    width: 74px;
-    height: 30px;
+    width: 20.556vw;
+    height: 8.333vw;
     border: none;
-    border-radius: 15px;
-    font-size: 12px;
+    border-radius: 4.167vw;
+    font-size: 3.333vw;
   }
   .redBtn {
     background-color: red;

@@ -119,13 +119,13 @@ export default {
 .imgSec {
   position: relative;
   display: flex;
-  height: 140px;
+  height: 38.889vw;
   justify-content: center;
   align-items: center;
   img {
     position: absolute;
-    width: 70px;
-    height: 70px;
+    width: 19.444vw;
+    height: 19.444vw;
     border-radius: 50%;
   }
   .van-uploader {

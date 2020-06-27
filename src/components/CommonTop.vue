@@ -14,14 +14,14 @@ export default {
 <style lang="less" scoped>
 .topSec {
   display: flex;
-  padding: 20px 0px 0px 0px;
+  padding: 5.556vw 0vw 0vw 0vw;
   span {
-    margin-left: 20px;
+    margin-left: 5.556vw;
   }
   p {
     flex: 1;
     text-align: center;
-    margin-right: 30px;
+    margin-right: 8.333vw;
     font-weight: bold;
   }
 }

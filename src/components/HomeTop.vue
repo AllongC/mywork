@@ -16,25 +16,25 @@ export default {};
 <style lang="less" scoped>
 .HomeTop {
   display: flex;
-  height: 60px;
+  height: 16.667vw;
   align-items: center;
   background-color: red;
   color: #fff;
-  padding: 0px 10px;
+  padding: 0vw 2.778vw;
   .iconnew {
-    font-size: 54px;
+    font-size: 15vw;
   }
   .HomeInfo {
     flex: 1;
     text-align: center;
     background-color: #f97979;
-    margin: 0px 20px 0px 10px;
-    height: 40px;
-    line-height: 40px;
-    border-radius: 20px;
+    margin: 0vw 5.556vw 0vw 2.778vw;
+    height: 11.111vw;
+    line-height: 11.111vw;
+    border-radius: 5.556vw;
   }
   .iconwode {
-    font-size: 24px;
+    font-size: 6.667vw;
     opacity: 0.6;
   }
 }
