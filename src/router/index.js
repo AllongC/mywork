@@ -44,7 +44,10 @@ const routes = [
   {
     path: '/focus',
     name: 'Focus',
-    component: Focus
+    component: Focus,
+    meta: {
+      auth: true
+    }
   }
 ]
 

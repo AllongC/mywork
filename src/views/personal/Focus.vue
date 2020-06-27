@@ -1,11 +1,12 @@
 <template>
   <div>
     <CommonTop topVal="我的关注" />
-    <div class="item">
-      <img src="@/img/logo.jpg" />
+    <div class="item" v-for="list in userList" :key="list.id">
+      <img v-if="list.head_img" :src="$axios.defaults.baseURL + list.head_img" />
+      <img v-else src="@/img/logo.jpg" />
       <div class="foucsInfo">
-        <p>火星新闻播报</p>
-        <p class="focusData">2019-10-10</p>
+        <p>{{list.nickname}}</p>
+        <p class="focusData">{{list.create_date.split("T")[0]}}</p>
       </div>
       <button>取消关注</button>
     </div>
@@ -15,8 +16,21 @@
 <script>
 import CommonTop from "@/components/CommonTop";
 export default {
+  data() {
+    return {
+      userList: []
+    };
+  },
   components: {
     CommonTop
+  },
+  mounted() {
+    this.$axios({
+      url: "/user_follows",
+      method: "get"
+    }).then(res => {
+      this.userList = res.data.data;
+    });
   }
 };
 </script>
