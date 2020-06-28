@@ -9,8 +9,7 @@
           <p>{{list.nickname}}</p>
           <p class="focusData">{{list.create_date.split("T")[0]}}</p>
         </div>
-        <button v-if="intermit.indexOf(list.id)==-1" @click="unfollow(list.id)">取消关注</button>
-        <button v-else @click="follow(list.id)" class="redBtn">关注</button>
+        <button @click="unfollow(list.id)">取消关注</button>
       </div>
     </div>
     <div v-else class="noFocus">
@@ -24,8 +23,7 @@ import CommonTop from "@/components/CommonTop";
 export default {
   data() {
     return {
-      userList: [],
-      intermit: []
+      userList: []
     };
   },
   methods: {
@@ -37,28 +35,9 @@ export default {
         this.userList = res.data.data;
       });
     },
-    unfollow(id) {
-      this.intermit.push(id);
-    },
-    follow(id) {
-      const newArr = this.intermit.map((item, index) => {
-        if (item !== id) {
-          return item;
-        }
-      });
-      this.intermit = newArr;
-    }
-  },
-  components: {
-    CommonTop
-  },
-  created() {
-    this.upData();
-  },
-  destroyed() {
-    this.intermit.forEach(item => {
+    unFoucs(id) {
       this.$axios({
-        url: "/user_unfollow/" + item,
+        url: "/user_unfollow/" + id,
         method: "get"
       }).then(res => {
         const { message } = res.data;
@@ -66,7 +45,16 @@ export default {
           this.upData();
         }
       });
-    });
+    },
+    unfollow(id) {
+      this.unFoucs(id);
+    }
+  },
+  components: {
+    CommonTop
+  },
+  created() {
+    this.upData();
   }
 };
 </script>
