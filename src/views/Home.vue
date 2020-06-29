@@ -3,7 +3,7 @@
     <HomeTop />
     <van-tabs v-model="active">
       <van-tab v-for="item in categoryList" :key="item.id" :title="item.name">
-        <Category :category="item" v-for="item in category" :key="item.id" />
+        <Category :category="item" v-for="item in categoryList[active].category" :key="item.id" />
       </van-tab>
     </van-tabs>
   </div>
@@ -16,8 +16,7 @@ export default {
   data() {
     return {
       active: 0,
-      categoryList: [],
-      category: []
+      categoryList: []
     };
   },
   components: {
@@ -33,8 +32,8 @@ export default {
           category: id
         }
       }).then(res => {
-        this.category = res.data.data;
-        console.log(this.category);
+        this.categoryList[this.active].category = res.data.data;
+        console.log(this.categoryList);
       });
     },
     getId() {
@@ -43,7 +42,9 @@ export default {
   },
   watch: {
     active() {
-      this.getCategory(this.getId());
+      if (this.categoryList[this.active].category.length == 0) {
+        this.getCategory(this.getId());
+      }
     }
   },
   mounted() {
@@ -51,7 +52,12 @@ export default {
       url: "/category",
       method: "get"
     }).then(res => {
-      this.categoryList = res.data.data;
+      this.categoryList = res.data.data.map(item => {
+        return {
+          ...item,
+          category: []
+        };
+      });
       this.getCategory(this.getId());
     });
   }
