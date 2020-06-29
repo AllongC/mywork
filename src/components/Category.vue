@@ -18,8 +18,10 @@
     </div>
     <div class="video" v-else-if="category.type==2&&category.cover.length>=1">
       <p class="title">{{category.title}}</p>
-      <div class="mask">
-        <div class="paly"></div>
+      <div class="source">
+        <img :src="category.cover[0].url" alt />
+        <div class="mask"></div>
+        <span class="iconfont iconshipin"></span>
       </div>
       <div class="smile">{{category.user.nickname}} {{category.comment_length}}跟帖</div>
     </div>
@@ -49,6 +51,7 @@ export default {
     }
   }
   img {
+    object-fit: cover;
     width: 33.333vw;
     height: 19.444vw;
   }
@@ -70,8 +73,10 @@ export default {
     }
     img {
       flex: 1;
+      object-fit: cover;
       justify-content: center;
       align-items: center;
+      margin-left: 1.389vw;
       width: 30.556vw;
       height: 19.444vw;
     }
@@ -85,36 +90,37 @@ export default {
 .video {
   box-sizing: border-box;
   padding: 2.778vw 2.778vw;
-  height: 83.333vw;
+  height: 88.889vw;
   border-bottom: 1px solid #ececec;
   .title {
     font-size: 5vw;
     margin-bottom: 2.778vw;
   }
-  .mask {
-    height: 58.333vw;
-    background-color: rgba(0, 0, 0, 0.5);
+  .source {
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
-    .paly {
-      position: relative;
-      width: 19.444vw;
-      height: 19.444vw;
-      background-color: rgba(0, 0, 0, 0.5);
-      border-radius: 50%;
+    img {
+      object-fit: cover;
+      height: 58.333vw;
+      width: 100%;
     }
-    .paly:after {
+    .mask {
       position: absolute;
-      top: 50%;
-      left: 50%;
-      margin-top: -16px;
-      margin-left: -5px;
-      content: "";
-      border-right: 16px solid transparent;
-      border-top: 16px solid transparent;
-      border-bottom: 16px solid transparent;
-      border-left: 16px solid #fff;
+      // height: 50px;
+      // width: 50px;
+      // border-radius: 50%;
+      top: 0px;
+      left: 0px;
+      height: 58.333vw;
+      width: 100%;
+      background-color: rgba(0, 0, 0, 0.3);
+    }
+    .iconshipin {
+      position: absolute;
+      font-size: 46px;
+      color: white;
     }
   }
   .smile {

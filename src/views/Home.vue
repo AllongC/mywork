@@ -34,6 +34,7 @@ export default {
         }
       }).then(res => {
         this.category = res.data.data;
+        console.log(this.category);
       });
     },
     getId() {
