@@ -25,11 +25,14 @@ export default {
   },
   methods: {
     getCategory(id) {
+      const commont = this.categoryList[this.active];
       this.$axios({
         url: "/post",
         method: "get",
         params: {
-          category: id
+          category: id,
+          pageIndex: commont.pageIndex,
+          pageSize: commont.pageSize
         }
       }).then(res => {
         this.categoryList[this.active].category = res.data.data;
@@ -55,7 +58,9 @@ export default {
       this.categoryList = res.data.data.map(item => {
         return {
           ...item,
-          category: []
+          category: [],
+          pageIndex: 1,
+          pageSize: 5
         };
       });
       this.getCategory(this.getId());
