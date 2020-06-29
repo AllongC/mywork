@@ -3,7 +3,15 @@
     <HomeTop />
     <van-tabs v-model="active">
       <van-tab v-for="item in categoryList" :key="item.id" :title="item.name">
-        <Category :category="item" v-for="item in categoryList[active].category" :key="item.id" />
+        <van-list
+          v-model="categoryList[active].loading"
+          :finished="categoryList[active].finished"
+          :immediate-check="false"
+          @load="loadMorePost"
+          finished-text="我也是有底线的"
+        >
+          <Category :category="item" v-for="item in categoryList[active].category" :key="item.id" />
+        </van-list>
       </van-tab>
     </van-tabs>
   </div>
@@ -35,12 +43,24 @@ export default {
           pageSize: commont.pageSize
         }
       }).then(res => {
-        this.categoryList[this.active].category = res.data.data;
-        console.log(this.categoryList);
+        const category = [
+          ...this.categoryList[this.active].category,
+          ...res.data.data
+        ];
+        this.categoryList[this.active].category = category;
+        console.log(category);
       });
     },
     getId() {
       return this.categoryList[this.active].id;
+    },
+    loadMorePost() {
+      let commont = this.categoryList[this.active];
+      commont.pageIndex += 1;
+      this.getCategory(this.getId());
+      if (commont.category.length <= commont.pageSize) {
+        commont.finished = true;
+      }
     }
   },
   watch: {
@@ -60,7 +80,9 @@ export default {
           ...item,
           category: [],
           pageIndex: 1,
-          pageSize: 5
+          pageSize: 5,
+          finished: false,
+          loading: false
         };
       });
       this.getCategory(this.getId());
