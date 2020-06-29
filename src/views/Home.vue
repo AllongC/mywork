@@ -4,13 +4,13 @@
     <van-tabs v-model="active">
       <van-tab v-for="item in categoryList" :key="item.id" :title="item.name">
         <van-list
-          v-model="categoryList[active].loading"
-          :finished="categoryList[active].finished"
+          v-model="item.loading"
+          :finished="item.finished"
           :immediate-check="false"
           @load="loadMorePost"
           finished-text="我也是有底线的"
         >
-          <Category :category="item" v-for="item in categoryList[active].category" :key="item.id" />
+          <Category :category="item" v-for="item in item.category" :key="item.id" />
         </van-list>
       </van-tab>
     </van-tabs>
