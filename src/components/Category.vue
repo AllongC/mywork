@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div @click="$router.push('/detail/'+category.id)">
     <div class="singlePhoto" v-if="category.type==1&&category.cover.length==1">
       <div class="singleInfo">
         <p class="title">{{category.title}}</p>
