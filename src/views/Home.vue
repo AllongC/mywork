@@ -1,7 +1,7 @@
 <template>
   <div>
     <HomeTop />
-    <van-tabs v-model="active">
+    <van-tabs v-model="active" sticky swipeable>
       <van-tab v-for="item in categoryList" :key="item.id" :title="item.name">
         <van-list
           v-model="item.loading"
@@ -43,11 +43,8 @@ export default {
           pageSize: commont.pageSize
         }
       }).then(res => {
-        const category = [
-          ...this.categoryList[this.active].category,
-          ...res.data.data
-        ];
-        this.categoryList[this.active].category = category;
+        const category = [...commont.category, ...res.data.data];
+        commont.category = category;
         console.log(category);
       });
     },
@@ -55,8 +52,9 @@ export default {
       return this.categoryList[this.active].id;
     },
     loadMorePost() {
-      let commont = this.categoryList[this.active];
+      const commont = this.categoryList[this.active];
       commont.pageIndex += 1;
+      commont.loading = false;
       this.getCategory(this.getId());
       if (commont.category.length <= commont.pageSize) {
         commont.finished = true;
