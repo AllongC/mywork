@@ -32,39 +32,41 @@ export default {
     Category
   },
   methods: {
-    getCategory(id) {
-      const commont = this.categoryList[this.active];
+    getCategory() {
+      const total = this.categoryList[this.active];
       this.$axios({
         url: "/post",
         method: "get",
         params: {
-          category: id,
-          pageIndex: commont.pageIndex,
-          pageSize: commont.pageSize
+          category: this.getId(),
+          pageIndex: total.pageIndex,
+          pageSize: total.pageSize
         }
       }).then(res => {
-        const category = [...commont.category, ...res.data.data];
-        commont.category = category;
-        console.log(category);
+        const { data } = res.data;
+        total.getSize = data.length;
+        total.category = [...total.category, ...data];
+        console.log(total.category);
       });
     },
     getId() {
       return this.categoryList[this.active].id;
     },
     loadMorePost() {
-      const commont = this.categoryList[this.active];
-      commont.pageIndex += 1;
-      commont.loading = false;
+      const total = this.categoryList[this.active];
+      total.pageIndex += 1;
+      total.loading = false;
       this.getCategory(this.getId());
-      if (commont.category.length <= commont.pageSize) {
-        commont.finished = true;
+      if (total.getSize == 0) {
+        total.finished = true;
       }
     }
   },
   watch: {
     active() {
-      if (this.categoryList[this.active].category.length == 0) {
-        this.getCategory(this.getId());
+      const total = this.categoryList[this.active];
+      if (total.category.length == 0) {
+        this.getCategory();
       }
     }
   },
@@ -80,10 +82,11 @@ export default {
           pageIndex: 1,
           pageSize: 5,
           finished: false,
-          loading: false
+          loading: false,
+          getSize: 0
         };
       });
-      this.getCategory(this.getId());
+      this.getCategory();
     });
   }
 };
