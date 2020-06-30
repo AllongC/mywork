@@ -16,7 +16,7 @@ export default {
   methods: {
     addfocus(id) {
       this.$axios({
-        url: "/user_follows/" + id,
+        url: "/post_star/" + id,
         method: "get"
       }).then(res => {
         console.log(res);

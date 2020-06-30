@@ -1,6 +1,6 @@
 <template>
   <div class="topSec">
-    <span class="iconfont iconjiantou2"></span>
+    <span class="iconfont iconjiantou2" @click="$router.back()"></span>
     <p>{{topVal}}</p>
   </div>
 </template>
