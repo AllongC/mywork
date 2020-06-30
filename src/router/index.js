@@ -1,11 +1,15 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
+
 import Login from '@/views/Login'
 import Register from '@/views/Register'
+
 import Center from '@/views/personal/Center'
 import Edit from '@/views/personal/Edit'
 import Focus from '@/views/personal/Focus'
+import Collect from "@/views/personal/Collect"
+
 import Text from '@/views/personal/Text'
 
 Vue.use(VueRouter)
@@ -16,6 +20,7 @@ const routes = [
     name: 'Home',
     component: Home
   },
+
   {
     path: '/login',
     name: 'Login',
@@ -26,6 +31,7 @@ const routes = [
     name: 'Register',
     component: Register
   },
+
   {
     path: '/center',
     name: 'Center',
@@ -50,6 +56,15 @@ const routes = [
       auth: true
     }
   },
+  {
+    path: '/collect',
+    name: 'Collect',
+    component: Collect,
+    meta: {
+      auth: true
+    }
+  },
+
   {
     path: '/text',
     name: 'Text',

@@ -19,7 +19,7 @@
     </div>
     <ListSec MyFocus="我的关注" FocusUser="关注的用户" @tigger="$router.push('/focus')" />
     <ListSec MyFocus="我的跟帖" FocusUser="跟帖/回复" @tigger="ToMyFocus('follow')" />
-    <ListSec MyFocus="我的收藏" FocusUser="文章/视频" @tigger="ToMyFocus('collect')" />
+    <ListSec MyFocus="我的收藏" FocusUser="文章/视频" @tigger="$router.push('/collect')" />
     <ListSec MyFocus="设置" FocusUser @tigger="ToMyFocus('set')" />
     <ListSec MyFocus="退出" FocusUser @tigger="ToMyFocus('quit')" />
   </div>
