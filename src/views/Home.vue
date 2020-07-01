@@ -46,7 +46,6 @@ export default {
         const { data } = res.data;
         total.getSize = data.length;
         total.category = [...total.category, ...data];
-        console.log(total.category);
       });
     },
     getId() {
