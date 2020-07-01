@@ -45,14 +45,29 @@
         <span class="iconfont iconweixin"></span>微信
       </div>
     </div>
+    <div v-if="!commentList.length">
+      <comment :comment="item" v-for="item in commentList " :key="item.id" />
+    </div>
+    <div v-else class="noComment">快来抢沙发...</div>
+    <div class="heel">
+      <button>更多跟贴</button>
+    </div>
+    <div class="import">
+      <input type="text" placeholder="写跟贴" />
+      <span class="iconfont iconpinglun-"></span>
+      <span class="iconfont iconshoucang"></span>
+      <span class="iconfont iconfenxiang"></span>
+    </div>
   </div>
 </template>
 
 <script>
+import comment from "@/components/comment/index";
 export default {
   data() {
     return {
-      category: []
+      category: [],
+      commentList: []
     };
   },
   methods: {
@@ -92,8 +107,18 @@ export default {
     }).then(res => {
       const { data } = res.data;
       this.category = data;
-      console.log(this.category);
     });
+    this.$axios({
+      url: "/post_comment/" + this.$route.params.id,
+      method: "get"
+    }).then(res => {
+      const { data } = res.data;
+      data.length = 3;
+      this.commentList = data;
+    });
+  },
+  components: {
+    comment
   }
 };
 </script>
@@ -208,6 +233,44 @@ export default {
   }
   .iconweixin {
     color: #00c800;
+  }
+}
+.noComment {
+  height: 200px;
+  text-align: center;
+  color: #666;
+  line-height: 200px;
+}
+.heel {
+  height: 110px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  button {
+    height: 40px;
+    padding: 0px 40px;
+    background-color: #fff;
+    border: 1px solid #666;
+    border-radius: 20px;
+    font-size: 14px;
+    color: #666;
+  }
+}
+.import {
+  padding-bottom: 20px;
+  display: flex;
+  input {
+    margin: 0px 20px;
+    height: 30px;
+    text-indent: 1em;
+    border-radius: 14px;
+    background-color: #d7d7d7;
+    border: none;
+    flex: 1;
+  }
+  span {
+    font-size: 24px;
+    margin-right: 14px;
   }
 }
 </style>
