@@ -32,33 +32,33 @@ export default {
   display: flex;
   justify-content: center;
   align-items: cen2ter;
-  margin: 20px 20px 0px 20px;
+  margin: 5.556vw 5.556vw 0vw 5.556vw;
   img {
-    width: 34px;
-    height: 34px;
+    width: 9.444vw;
+    height: 9.444vw;
     border-radius: 50%;
-    margin-right: 8px;
+    margin-right: 2.222vw;
   }
   .info {
     flex: 1;
     .title {
-      font-size: 16px;
+      font-size: 4.444vw;
       color: #333;
     }
     .time {
-      font-size: 12px;
+      font-size: 3.333vw;
       color: #888;
     }
   }
   .replace {
-    font-size: 14px;
+    font-size: 3.889vw;
     color: #888;
   }
 }
 .main {
-  margin-left: 64px;
-  margin-bottom: 20px;
+  margin-left: 17.778vw;
+  margin-bottom: 5.556vw;
   color: #666;
-  font-size: 14px;
+  font-size: 3.889vw;
 }
 </style>

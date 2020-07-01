@@ -129,26 +129,26 @@ export default {
 <style lang="less" scoped>
 .DetailTop {
   display: flex;
-  padding: 0px 10px;
+  padding: 0vw 2.778vw;
   justify-content: center;
   align-items: center;
   .iconnew {
     flex: 1;
-    margin-left: 4px;
-    font-size: 54px;
+    margin-left: 1.111vw;
+    font-size: 15vw;
   }
   button {
-    font-size: 12px;
-    height: 26px;
-    padding: 0px 10px;
-    border-radius: 22px;
+    font-size: 3.333vw;
+    height: 7.222vw;
+    padding: 0vw 2.778vw;
+    border-radius: 6.111vw;
     border: 1px solid #888;
   }
   .follow {
-    font-size: 12px;
-    height: 26px;
-    padding: 0px 10px;
-    border-radius: 22px;
+    font-size: 3.333vw;
+    height: 7.222vw;
+    padding: 0vw 2.778vw;
+    border-radius: 6.111vw;
     border: 1px solid red;
     background-color: red;
     color: #fff;
@@ -158,23 +158,23 @@ export default {
   }
 }
 /deep/ .normal {
-  padding: 0px 10px;
+  padding: 0vw 2.778vw;
   .title {
-    font-size: 18px;
+    font-size: 5vw;
     font-weight: bold;
   }
   .userInfo {
-    margin: 10px 0px;
-    font-size: 14px;
+    margin: 2.778vw 0vw;
+    font-size: 3.889vw;
     color: #999;
   }
   img {
     max-width: 100%;
   }
   .mainContent {
-    font-size: 14px;
+    font-size: 3.889vw;
     color: #666;
-    line-height: 24px;
+    line-height: 6.667vw;
   }
 }
 .video {
@@ -182,34 +182,34 @@ export default {
     width: 100%;
   }
   .userInfo {
-    padding: 0px 10px;
-    margin: 10px 0px;
+    padding: 0vw 2.778vw;
+    margin: 2.778vw 0vw;
     display: flex;
     justify-content: center;
     align-items: center;
     p {
-      margin-left: 8px;
+      margin-left: 2.222vw;
       flex: 1;
-      font-size: 14px;
+      font-size: 3.889vw;
       color: #999;
     }
     img {
-      width: 24px;
-      height: 24px;
+      width: 6.667vw;
+      height: 6.667vw;
       border-radius: 50%;
     }
     button {
-      font-size: 12px;
-      height: 26px;
-      padding: 0px 10px;
-      border-radius: 22px;
+      font-size: 3.333vw;
+      height: 7.222vw;
+      padding: 0vw 2.778vw;
+      border-radius: 6.111vw;
       border: 1px solid #888;
     }
     .follow {
-      font-size: 12px;
-      height: 26px;
-      padding: 0px 10px;
-      border-radius: 22px;
+      font-size: 3.333vw;
+      height: 7.222vw;
+      padding: 0vw 2.778vw;
+      border-radius: 6.111vw;
       border: 1px solid red;
       background-color: red;
       color: #fff;
@@ -219,15 +219,15 @@ export default {
 .DetailBOttom {
   display: flex;
   justify-content: space-around;
-  padding: 26px 10px;
+  padding: 7.222vw 2.778vw;
   border-bottom: 2px solid #e4e4e4;
   .btn {
     text-align: center;
-    height: 26px;
-    line-height: 26px;
-    padding: 0px 14px;
+    height: 7.222vw;
+    line-height: 7.222vw;
+    padding: 0vw 3.889vw;
     border: 1px solid #888;
-    border-radius: 14px;
+    border-radius: 3.889vw;
   }
   .dianzan {
     color: red;
@@ -239,13 +239,13 @@ export default {
   }
 }
 .noComment {
-  height: 200px;
+  height: 55.556vw;
   text-align: center;
   color: #666;
-  line-height: 200px;
+  line-height: 55.556vw;
 }
 .heel {
-  height: 110px;
+  height: 30.556vw;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -260,20 +260,20 @@ export default {
   }
 }
 .import {
-  padding-bottom: 20px;
+  padding-bottom: 5.556vw;
   display: flex;
   input {
-    margin: 0px 20px;
-    height: 30px;
+    margin: 0vw 5.556vw;
+    height: 8.333vw;
     text-indent: 1em;
-    border-radius: 14px;
+    border-radius: 3.889vw;
     background-color: #d7d7d7;
     border: none;
     flex: 1;
   }
   span {
-    font-size: 24px;
-    margin-right: 14px;
+    font-size: 6.667vw;
+    margin-right: 3.889vw;
   }
 }
 </style>
