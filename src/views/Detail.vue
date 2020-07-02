@@ -52,17 +52,14 @@
     <div class="heel">
       <button @click="$router.push('/morecomment/'+$route.params.id)">更多跟贴</button>
     </div>
-    <div class="import">
-      <input type="text" placeholder="写跟贴" />
-      <span class="iconfont iconpinglun-"></span>
-      <span class="iconfont iconshoucang"></span>
-      <span class="iconfont iconfenxiang"></span>
-    </div>
+    <Input />
   </div>
 </template>
 
 <script>
 import comment from "@/components/comment/index";
+import Input from "@/components/comment/CommentInput";
+
 export default {
   data() {
     return {
@@ -121,7 +118,8 @@ export default {
     });
   },
   components: {
-    comment
+    comment,
+    Input
   }
 };
 </script>
@@ -249,6 +247,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+  padding-bottom: 90px;
   button {
     height: 40px;
     padding: 0px 40px;
@@ -257,23 +256,6 @@ export default {
     border-radius: 20px;
     font-size: 14px;
     color: #666;
-  }
-}
-.import {
-  padding-bottom: 5.556vw;
-  display: flex;
-  input {
-    margin: 0vw 5.556vw;
-    height: 8.333vw;
-    text-indent: 1em;
-    border-radius: 3.889vw;
-    background-color: #d7d7d7;
-    border: none;
-    flex: 1;
-  }
-  span {
-    font-size: 6.667vw;
-    margin-right: 3.889vw;
   }
 }
 </style>
