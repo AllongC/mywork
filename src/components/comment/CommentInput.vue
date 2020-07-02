@@ -47,7 +47,8 @@ export default {
         method: "post",
         data
       }).then(res => {
-        console.log(res);
+        this.$emit("reload");
+        this.content = "";
       });
     }
   }

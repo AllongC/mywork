@@ -52,7 +52,7 @@
     <div class="heel">
       <button @click="$router.push('/morecomment/'+$route.params.id)">更多跟贴</button>
     </div>
-    <Input :lastId="lastId" ref="Input" />
+    <Input :lastId="lastId" ref="Input" @reload="load" />
   </div>
 </template>
 
@@ -69,6 +69,19 @@ export default {
     };
   },
   methods: {
+    load() {
+      this.$axios({
+        url: "/post_comment/" + this.$route.params.id,
+        method: "get"
+      }).then(res => {
+        const { data } = res.data;
+        if (data.length >= 3) {
+          data.length = 3;
+        }
+        this.commentList = data;
+        console.log(this.commentList);
+      });
+    },
     toggleFollow() {
       if (this.category.has_follow) {
         this.$axios({
@@ -110,17 +123,7 @@ export default {
       const { data } = res.data;
       this.category = data;
     });
-    this.$axios({
-      url: "/post_comment/" + this.$route.params.id,
-      method: "get"
-    }).then(res => {
-      const { data } = res.data;
-      if (data.length >= 3) {
-        data.length = 3;
-      }
-      this.commentList = data;
-      console.log(this.commentList);
-    });
+    this.load();
   },
   components: {
     comment,
