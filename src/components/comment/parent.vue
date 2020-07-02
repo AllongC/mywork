@@ -1,5 +1,6 @@
 <template>
   <div class="border">
+    <Parent v-if="comment.parent" :comment="comment.parent" @parentId="getParentId" />
     <div class="userInfo">
       <img v-if="comment.user.head_img" :src="$axios.defaults.baseURL+comment.user.head_img" alt />
       <img v-else src="@/img/logo.jpg" alt />
@@ -9,17 +10,24 @@
           <span class="time">{{comment.create_date.split('T')[0]}}</span>
         </p>
       </div>
-      <div class="replace">回复</div>
+      <div class="replace" @click="sendParentId">回复</div>
     </div>
     <p class="main">发表：{{comment.content}}</p>
-    <Parent v-if="comment.parent" :comment="comment.parent" />
   </div>
 </template>
 
 <script>
 export default {
   name: "Parent",
-  props: ["comment"]
+  props: ["comment"],
+  methods: {
+    sendParentId() {
+      this.$emit("parentId", this.comment.id);
+    },
+    getParentId(id) {
+      this.$emit("parentId", id);
+    }
+  }
 };
 </script>
 

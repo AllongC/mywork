@@ -9,7 +9,7 @@
       </div>
       <div class="replace" @click="IndexId">回复</div>
     </div>
-    <parent v-if="comment.parent" :comment="comment.parent" />
+    <parent v-if="comment.parent" :comment="comment.parent" @parentId="getId" />
     <p class="main">{{comment.content}}</p>
   </div>
 </template>
@@ -24,6 +24,9 @@ export default {
   methods: {
     IndexId() {
       this.$emit("sendIndexId", this.comment.id);
+    },
+    getId(id) {
+      this.$emit("sendIndexId", id);
     }
   }
 };

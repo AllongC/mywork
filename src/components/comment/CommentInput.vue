@@ -40,6 +40,7 @@ export default {
       };
       if (this.lastId) {
         data.parent_id = this.lastId;
+        console.log(data.parent_id);
       }
       this.$axios({
         url: "/post_comment/" + this.$route.params.id,
