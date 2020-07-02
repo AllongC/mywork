@@ -7,7 +7,7 @@
         <p class="title">{{comment.user.nickname}}</p>
         <p class="time">{{comment.create_date.split('T')[0]}}</p>
       </div>
-      <div class="replace">回复</div>
+      <div class="replace" @click="IndexId">回复</div>
     </div>
     <parent v-if="comment.parent" :comment="comment.parent" />
     <p class="main">{{comment.content}}</p>
@@ -20,6 +20,11 @@ export default {
   props: ["comment"],
   components: {
     parent
+  },
+  methods: {
+    IndexId() {
+      this.$emit("sendIndexId", this.comment.id);
+    }
   }
 };
 </script>

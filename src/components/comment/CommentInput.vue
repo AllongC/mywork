@@ -15,6 +15,7 @@
 
 <script>
 export default {
+  props: ["lastId"],
   data() {
     return {
       isShow: true,
@@ -37,6 +38,9 @@ export default {
       const data = {
         content: this.content
       };
+      if (this.lastId) {
+        data.parent_id = this.lastId;
+      }
       this.$axios({
         url: "/post_comment/" + this.$route.params.id,
         method: "post",

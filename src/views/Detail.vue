@@ -46,13 +46,13 @@
       </div>
     </div>
     <div v-if="commentList.length">
-      <comment :comment="item" v-for="item in commentList " :key="item.id" />
+      <comment :comment="item" v-for="item in commentList " :key="item.id" @sendIndexId="acceptId" />
     </div>
     <div v-else class="noComment">快来抢沙发...</div>
     <div class="heel">
       <button @click="$router.push('/morecomment/'+$route.params.id)">更多跟贴</button>
     </div>
-    <Input />
+    <Input :lastId="lastId" ref="Input" />
   </div>
 </template>
 
@@ -64,7 +64,8 @@ export default {
   data() {
     return {
       category: [],
-      commentList: []
+      commentList: [],
+      lastId: ""
     };
   },
   methods: {
@@ -96,6 +97,10 @@ export default {
           this.category.has_like = false;
         }
       });
+    },
+    acceptId(id) {
+      this.lastId = id;
+      this.$refs.Input.getFocus();
     }
   },
   mounted() {
