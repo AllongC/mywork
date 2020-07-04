@@ -38,6 +38,14 @@ export default {
       delColumn: []
     };
   },
+  watch: {
+    column() {
+      localStorage.setItem("column", JSON.stringify(this.column));
+    },
+    delColumn() {
+      localStorage.setItem("delColumn", JSON.stringify(this.delColumn));
+    }
+  },
   methods: {
     delItem(index) {
       if (this.column.length == 1) {
@@ -52,6 +60,13 @@ export default {
     }
   },
   mounted() {
+    const localColumn = localStorage.getItem("column");
+    const localDelColumn = localStorage.getItem("delColumn");
+    if (localColumn || localDelColumn) {
+      this.column = JSON.parse(localColumn);
+      this.delColumn = JSON.parse(localDelColumn);
+      return;
+    }
     this.$axios({
       url: "/category",
       method: "get"
