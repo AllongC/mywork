@@ -1,8 +1,10 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
+
 import Detail from '@/views/Detail'
 import MoreComment from '@/views/MoreComment'
+import Search from '@/views/Search'
 
 import Login from '@/views/Login'
 import Register from '@/views/Register'
@@ -33,6 +35,11 @@ const routes = [
     path: '/morecomment/:id',
     name: 'MoreComment',
     component: MoreComment
+  },
+  {
+    path: '/search',
+    name: 'Search',
+    component: Search
   },
 
   {
