@@ -70,6 +70,22 @@ export default {
     }
   },
   mounted() {
+    const localColumn = localStorage.getItem("column");
+    if (localColumn) {
+      this.categoryList = JSON.parse(localColumn).map(item => {
+        return {
+          ...item,
+          category: [],
+          pageIndex: 1,
+          pageSize: 5,
+          finished: false,
+          loading: false,
+          getSize: 0
+        };
+      });
+      this.getCategory();
+      return;
+    }
     this.$axios({
       url: "/category",
       method: "get"
